@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.algaworks.estoque.model.Produto;
 
@@ -49,4 +50,7 @@ public interface Produtos extends JpaRepository<Produto, Long> {
     // Todos com quantidade "menor que". Poderia ser usado
     // também LessThanEqual, GreaterThan, GreaterThanEqual.
     List<Produto> findByQuantidadeLessThan(int quantidade);
+    
+    @Query("from Produto where nome like concat(?1, '%')")
+    List<Produto> pesquisarProdutos(String nome);
 }

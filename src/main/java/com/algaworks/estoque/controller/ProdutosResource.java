@@ -25,6 +25,11 @@ public class ProdutosResource {
 	@Autowired
 	private Produtos produtos;
 	
+	@GetMapping("/pesquisarProdutos")
+	public List<Produto> pesquisarProdutos(@RequestParam String nome) {
+		return produtos.pesquisarProdutos(nome);
+	}
+	
 	@GetMapping("/por-nome")
 	public Produto porNome(@RequestParam String nome) {
 		return produtos.findByNome(nome);
